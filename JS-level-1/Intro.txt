@@ -60,3 +60,4 @@ Topics
 
   1. data-types
   2. scopes / execution-context
+  3. FP in Javascript
