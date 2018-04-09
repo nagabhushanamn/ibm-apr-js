@@ -166,9 +166,9 @@ var newRe = /\d{4}-\d{4}-\d{4}/;
 
 /*
 
-    way 1: ' . ' notation , use if propert is valid identifier
+    way 1: ' . ' notation , use if property is valid identifier
     else
-    way 1: ' [] ' notation
+    way 2: ' [] ' notation
 
 */
 

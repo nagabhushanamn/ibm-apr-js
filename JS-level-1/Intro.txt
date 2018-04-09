@@ -59,3 +59,4 @@ Topics
 -------
 
   1. data-types
+  2. scopes / execution-context
