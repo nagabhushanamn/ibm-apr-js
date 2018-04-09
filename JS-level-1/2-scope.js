@@ -113,8 +113,8 @@ scope / execution-context
 
 
 // const person = { name: 'Nag' }
-// // person = null;
-// person.name="Nag N";
+// // person = null; // error , we cant change reference
+// person.name="Nag N"; // but we can mutate data
 
 
 
