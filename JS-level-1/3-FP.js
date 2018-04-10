@@ -259,17 +259,73 @@ even after the parent function has closed.
 
 // self-executable function ( module-pattern )
 
-const counter = (function () {
-    let count = 0;  // private
-    function doCount() {
-        count++;
-    }
-    function getCount() {
-        return count;
-    }
-    return {
-        inc: doCount,
-        get: getCount
-    }
-})();
+// const counter = (function () {
+//     let count = 0;  // private
+//     function doCount() {
+//         count++;
+//     }
+//     function getCount() {
+//         return count;
+//     }
+//     return {
+//         inc: doCount,
+//         get: getCount
+//     }
+// })();
+
+
+//--------------------------------------
+
+
+// self-executable function / IIFE
+
+// syntax
+
+// (function (m) {
+//     console.log('executed myself - ' + m);
+// })('good morning');
+
+//-------------------------------------------------
+
+
+// function makeAdder(n1) {
+//     return function (n2) {
+//         return n1 + n2;
+//     }
+// }
+
+// let adder10 = makeAdder(10);
+// console.log(adder10(30));
+// console.log(adder10(40));
+
+// let adder20 = makeAdder(20);
+// console.log(adder20(20));
+
+//--------------------------------------------------
+
+
+
+
+
+
+
+// Ex ( ES5)
+
+var myFunctions = [];
+
+//--------------------------------------------------
+// function getF(i) {
+//     var f = function () { console.log(i) }
+//     return f;
+// }
+for (var i = 0; i < 2; i++) {
+    //myFunctions.push(getF(i));
+    myFunctions.push((function (i) { return function () { console.log(i) } })(i));
+}
+//--------------------------------------------------
+
+// console.log(i);
+
+myFunctions[0]() // 0
+myFunctions[1]() // 1
 
