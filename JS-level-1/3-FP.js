@@ -215,3 +215,61 @@ FP principles:
 // }
 // func(1, 2, 3, 4, 5, 6);
 
+
+//--------------------------------------------------------
+
+
+// closure
+//-----------
+
+/*
+A closure is a function having access to the parent scope,
+even after the parent function has closed.
+*/
+
+// function teach(sub) {
+//     console.log(`teaching ${sub}`);
+//     let notes = `${sub}-notes`;
+//     let fun = "bla bla";
+//     let learn = function () {
+//         console.log(`learning with ${notes}`);
+//     }
+//     // learn();
+//     console.log('teaching end..');
+//     return learn;
+// }
+
+// let learn = teach('.js');
+// learn();
+// learn();
+// learn();
+
+
+// why /where we need closures ?
+
+/*
+    use1 : to abstract public behav any module
+
+        e.g counter-module
+
+            count:number
+            doCount()
+            getCount()
+*/
+
+// self-executable function ( module-pattern )
+
+const counter = (function () {
+    let count = 0;  // private
+    function doCount() {
+        count++;
+    }
+    function getCount() {
+        return count;
+    }
+    return {
+        inc: doCount,
+        get: getCount
+    }
+})();
+
