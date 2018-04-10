@@ -62,3 +62,4 @@ Topics
   2. scopes / execution-context
   3. FP in Javascript
   4. 'this' keyword / Function-binding
+  5. prototypes

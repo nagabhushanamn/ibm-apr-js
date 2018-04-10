@@ -67,16 +67,16 @@
 // dynamic function-binding
 //-----------------------------------------------------------
 
-let greetLib = {
-    name: 'greet-lib',
-    sayName: function (message, from) {
-        console.log(message + ' im ' + this.name + " : " + from);
-    }
-};
+// let greetLib = {
+//     name: 'greet-lib',
+//     sayName: function (message, from) {
+//         console.log(message + ' im ' + this.name + " : " + from);
+//     }
+// };
 
 
-let p = { name: 'Nag' };
-let e = { name: 'IBM' };
+// let p = { name: 'Nag' };
+// let e = { name: 'IBM' };
 
 // way-1: call()
 // greetLib.sayName.call(p, "Hello", "chennai")
@@ -126,3 +126,100 @@ let e = { name: 'IBM' };
 */
 
 //--------------------------------------------------------------------------------
+
+// Q
+
+// function Person(name, age) {
+//     this.name = name;
+//     this.age = age;
+// }
+
+// let p=new Person('Nag', 33);  // dont invoke constructor without 'new' keyword
+
+
+//--------------------------------------------------------------------------------
+
+
+// Q2
+// let emp = { name: 'IBM' };
+// let tnr = {
+//     name: 'Nag',
+//     doTeach: function () {
+//         console.log(this.name + " teaching .js");
+//         let self=this;
+//         let learn = function () {
+//             console.log(this.name + " learning .js from Tnr-" + self.name);
+//         }
+//         //learn();
+//         console.log('teaching end..');
+//         return learn;
+//     }
+// };
+
+// let learn = tnr.doTeach();
+// learn.call(emp);
+// let newTnr = { name: 'Praveen' }
+// let newLearn = tnr.doTeach.call(newTnr);
+// newLearn.call(emp);
+
+//------------------------------------------------------------
+
+// Ex.
+
+// create Employee class  with 'name' property
+
+// create Trainer class with 'name' & doTeach property
+
+// instantiate 1 trainer & 2 employees
+
+// ask trainer doTeach & return doLearn function
+
+// execute doLearn function by 2 employees
+
+// imp-note : doLearn shud log like "e.name learning .js from tnr.name"
+
+//-------------------------------------------------
+
+// Q
+
+// let i = 10;
+// function func() {
+//     console.log(i);
+//     console.log(this.i);
+// }
+// let o = { i: 20 }
+// func.call(o);
+
+//-------------------------------------------------
+
+// let i = 10;
+// let foo = {
+//     bar: {
+//         i: 20,
+//         baz: function () {
+//             console.log(this.i);
+//         }
+//     }
+// }
+
+// let f=foo.bar.baz;
+// f();
+
+// /---------------------------------------------------------
+
+// Model
+let tnr = { name: 'Nag' };
+// Service
+let ibmTngService = {
+    doTng: function () {
+        console.log(this.name + " teaching .js");
+    }
+};
+let tngBtn = document.getElementById('tngBtn');
+
+// let f = function () {
+//     ibmTngService.doTng.call(tnr);
+// }
+// tngBtn.addEventListener('click', f);
+// or
+tngBtn.addEventListener('click', ibmTngService.doTng.bind(tnr));
