@@ -130,23 +130,92 @@ let newArr = [...a1, 4, 5, 6, ...a2];
 //     console.log(item);
 // }
 //-----------------------------------------------------------
+// 9. custom iterable object
+//-----------------------------------------------------
 
-let idMaker = {
-    [Symbol.iterator]: function () {
-        let id = 0;
-        return {
-            next: function () {
-                id++;
-                return { value: id <= 10 ? id : undefined, done: id <= 10 ? false : true }
-            }
-        };
+// let idMaker = {
+//     [Symbol.iterator]: function () {
+//         let id = 0;
+//         return {
+//             next: function () {
+//                 id++;
+//                 return { value: id <= 10 ? id : undefined, done: id <= 10 ? false : true }
+//             }
+//         };
+//     }
+// };
+
+// // let [id1, id2] = idMaker;
+
+// // let ids = [...idMaker];
+
+// for (let id of idMaker) {
+//     console.log(id);
+// }
+
+//-----------------------------------------------------------
+// 9. OO with class-syntax
+//-----------------------------------------------------------
+
+
+// Es5
+
+// function Person(name, age) {
+//     this.name = name;
+//     this.age = age;
+// }
+// Person.prototype.sayName = function () {
+//     console.log('im ' + this.name);
+// }
+// Person.prototype.sayAge = function () {
+//     console.log('im ' + this.age + " old");
+// }
+
+// Es6
+
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        console.log('Person::constructor()');
     }
-};
-
-// let [id1, id2] = idMaker;
-
-// let ids = [...idMaker];
-
-for (let id of idMaker) {
-    console.log(id);
+    sayName() {
+        console.log('im ' + this.name);
+    }
+    sayAge() {
+        console.log('im ' + this.age + "old");
+    }
 }
+// var p1 = new Person('Nag', 33);
+
+class Employee extends Person {
+    constructor(name, age, salary) {
+        super(name, age);
+        this.salary = salary;
+        console.log('Employee::construtor');
+    }
+    saySalary() {
+        console.log('im ' + this.salary + " only");
+    }
+    askForRaise() {
+        return this.salary * 0.02;
+    }
+}
+
+// let e = new Employee('Nag', 33, 1000.00);
+
+class Boss extends Employee {
+    askForRaise() {
+        return this.salary * 0.2 + super.askForRaise();
+    }
+}
+
+let boss = new Boss('Nag', 33, 1000.00);
+
+
+class Abc {
+    static staMethod() {
+        console.log('....');
+    }
+}
+Abc.staVar = 123;
