@@ -28,7 +28,7 @@ class TodoService {
         this.todos = this.todos.map(todo => Object.assign({}, todo, { title: todo.id === id ? newTitle : todo.title }))
     }
     deleteTodo(id) {
-        this.todos = this.todos.filter(todo => todo.id !== id ? true : false)
+        this.todos = this.todos.filter(todo => todo.id !== id)
     }
     completeAll() {
         let isAllCompleted = this.todos.every(todo => todo.completed);
