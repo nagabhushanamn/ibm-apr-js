@@ -22,7 +22,7 @@ class TodoService {
         this.todos = this.todos.concat(newTodo);
     }
     completeTodo(id) {
-        this.todos = this.todos.map(todo => Object.assign({}, todo, { completed: todo.id === id ? !todo.completed : false }))
+        this.todos = this.todos.map(todo => Object.assign({}, todo, { completed: todo.id === id ? !todo.completed : todo.completed }))
     }
     editTodo(id, newTitle) {
         this.todos = this.todos.map(todo => Object.assign({}, todo, { title: todo.id === id ? newTitle : todo.title }))
