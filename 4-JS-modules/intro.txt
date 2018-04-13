@@ -37,6 +37,17 @@ commonJS module-standard
 
   imp-note:
 
-   ==> Node.js implemented this standard as default module-standard.
+   ==> Node.js already implemented this standard as default module-standard.
 
 --------------------------------------------------------------------       
+
+
+ NPM ( Node Package Manager )
+ -----------------------------
+
+  -> CLI tool, runs on Node.js
+
+  why we need ?
+
+  -> to publish/install javascript packages from 'NPM-repository'
+  -> to manage application build-lifecycle

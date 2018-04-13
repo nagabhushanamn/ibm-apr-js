@@ -1,8 +1,0 @@
-{
-    "name":"ibm-apr-greet",
-    "version": "1.0.0",
-    "author": {
-        "name":"Nag"
-    },
-    "main": "index.js"
-}
