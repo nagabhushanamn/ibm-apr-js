@@ -51,3 +51,23 @@ commonJS module-standard
 
   -> to publish/install javascript packages from 'NPM-repository'
   -> to manage application build-lifecycle
+
+
+  ------------------------------------------------------------------
+
+
+  from ECMAScript spec,
+
+  in ES6 , 
+
+  ES module-standard
+  --------------------
+
+
+
+ -> every .js-file is module
+ -> all variable & functions are private to module by default
+ -> to abstract/export any member(s) to other modules , use 'export' keyword
+ -> to require/import any module use 'import' function
+ -> group related modules into package with description-file(package.json)
+
