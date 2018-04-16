@@ -1,6 +1,9 @@
 
 const express = require('express');
 const app = express();
+// const logger = require('./logger');
+const logger = require('morgan');
+const bodyParser = require('body-parser')
 
 //----------------------------------------------------------------------
 // app.get("/", (req, res) => {
@@ -49,10 +52,17 @@ const app = express();
 
 // or
 
-app.use(express.static(__dirname + "/public"));
-app.get("/todos", function (req, res) {
-    let todos = ["learn js", "learn node", "learn express"];
+let todos = ["learn js", "learn node", "learn express"];
+
+app.use(logger('dev'));
+app.use(express.static(__dirname + "/public")); // index.html | bootstrap.css | exp.png | client-app.js
+app.get("/my-todos", function (req, res) {
     res.json(todos);
+});
+// app.use(bodyParser.json());
+app.post("/my-todos", bodyParser.json(), function (req, res) {
+    todos.push(req.body.title);
+    res.send({ status: 'New todo saved..' });
 });
 app.listen(3000, () => {
     console.log('listening on port 3000');
