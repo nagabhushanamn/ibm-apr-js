@@ -49,7 +49,7 @@ light.setUp();
 
 
 //------------------------------------------------------
-// Light
+// AC
 const AC = {
     setUp: function () {
         door.on('open', (e) => {
