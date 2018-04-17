@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
 app.get('/new-product-form', function (req, res, next) {
@@ -38,10 +38,15 @@ app.post('/save-product', function (req, res, next) {
   var newProduct = new Product();
   Object.assign(newProduct, req.body);
   newProduct.save((product) => {
-    res.redirect("/");
+    res.redirect("/view-all");
   })
 });
-
+app.get('/view-all', function (req, res, next) {
+  Product.find((err, result) => {
+    if (err) next(err);
+    res.render('product-list', { products: result })
+  });
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
