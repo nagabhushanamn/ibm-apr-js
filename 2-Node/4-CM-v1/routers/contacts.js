@@ -19,14 +19,13 @@ let contacts = [
 ];
 
 router.get("/", function (req, res, next) {
-    //res.json(contacts); // application/json
     //res.render('contact-list', { contacts }); // text/html
-    res.json(contacts);
+    res.json(contacts); // application/json
 })
 router.get('/:id', function (req, res, next) {
     let contact = contacts.find(item => item.id === Number.parseInt(req.params.id))
     //res.render('contact-detail', { contacts, contact }); // text/html
-    res.json(contact);
+    res.json(contact); // application/json
 })
 
 
