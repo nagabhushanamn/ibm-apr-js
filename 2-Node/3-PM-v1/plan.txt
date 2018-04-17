@@ -1,0 +1,20 @@
+
+
+
+  Product Management ( PM )
+  ------------------------
+
+    - create
+    - retreive
+    - update
+    - delete
+
+---------------------------------------------
+s/w
+    - application  => processing data
+        => Node.js web-application
+    - datasource   => persist data
+        => NoSQL  i.e MongoDB
+---------------------------------------------       
+
+
