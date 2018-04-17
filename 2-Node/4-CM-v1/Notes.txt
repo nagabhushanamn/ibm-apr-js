@@ -1,0 +1,14 @@
+
+
+problems with traditional web-application:
+-----------------------------------------
+
+
+  1. on every resp, 
+    ==>browser re-loads current page with new page
+  2. on every req , 
+    ==>server should re-generate same layout(UI) again & again with new data, keeping client's state
+  3. on every response , 
+     we r loading same assets ( css , images , icons , fonts , browser javascript ), increase n/w bandwidth
+
+

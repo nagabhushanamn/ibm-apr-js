@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CM-page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body class="container">
+    <nav class="navbar navbar-default">
+        <a href class="navbar-brand">CM</a>
+    </nav>
+    <hr/>
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+            <ul class="list-group">
+                {{#each contacts}}
+                <li class="list-group-item"><a href="/contacts/{{id}}">{{name}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

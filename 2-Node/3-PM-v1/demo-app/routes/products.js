@@ -6,6 +6,7 @@ var Product = require('../model/Product');
 router.get('/new-product-form', function (req, res, next) {
     res.render('product-form');
 });
+
 router.post('/save-product', function (req, res, next) {
     if (req.body.id) {
         Product.findByIdAndUpdate(req.body.id, req.body, (err, product) => {
