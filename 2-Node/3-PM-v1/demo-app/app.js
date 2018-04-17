@@ -29,17 +29,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+
+//-------------------------------------------------------------
 
 app.get('/new-product-form', function (req, res, next) {
   res.render('product-form');
 });
 app.post('/save-product', function (req, res, next) {
-  var newProduct = new Product();
-  Object.assign(newProduct, req.body);
-  newProduct.save((product) => {
-    res.redirect("/view-all");
-  })
+  if (req.body.id) {
+    Product.findByIdAndUpdate(req.body.id, req.body, (err, product) => {
+      res.redirect("/view-all");
+    })
+  } else {
+    let product = new Product(req.body);
+    product.save((product) => {
+      res.redirect("/view-all");
+    })
+  }
 });
 app.get('/view-all', function (req, res, next) {
   Product.find((err, result) => {
@@ -47,6 +53,22 @@ app.get('/view-all', function (req, res, next) {
     res.render('product-list', { products: result })
   });
 })
+app.get('/delete-product', function (req, res, next) {
+  let id = req.query.id;
+  Product.remove({ _id: id }, (err) => {
+    if (err) throw err;
+    res.redirect('/view-all');
+  })
+})
+app.get('/edit-product', function (req, res, next) {
+  let id = req.query.id;
+  Product.findById({ _id: id }, (err, product) => {
+    if (err) throw err;
+    res.render('product-form', { product });
+  })
+})
+//-------------------------------------------------------------
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

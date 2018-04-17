@@ -5,21 +5,27 @@
         </div>
         <div class="card-body">
             <form action="save-product" method="post">
+                {{#if product._id}}
+                <div class="form-group">
+                    <label>Id:</label>
+                    <input type="text" readonly class="form-control" name="id" value="{{product._id}}" />
+                </div>
+                {{/if}}
                 <div class="form-group">
                     <label>Name:</label>
-                    <input class="form-control" name="name" />
+                    <input class="form-control" name="name" value="{{product.name}}" />
                 </div>
                 <div class="form-group">
                     <label>Price:</label>
-                    <input type="number" class="form-control" name="price" />
+                    <input type="number" class="form-control" name="price" value="{{product.price}}" />
                 </div>
                 <div class="form-group">
                     <label>Make-date:</label>
-                    <input type="date" class="form-control" name="make_date"/>
+                    <input type="text" class="form-control" name="make_date" value="{{product.make_date}}" />
                 </div>
                 <div class="form-group">
                     <label>Description:</label>
-                    <textarea class="form-control" name="description"></textarea>
+                    <textarea class="form-control" name="description">{{product.description}}</textarea>
                 </div>
                 <button class="btn btn-primary">save</button>
             </form>

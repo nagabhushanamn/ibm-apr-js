@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var productSchema = new Schema({
+    id: String,
     name: String,
     price: Number,
     make_date: { type: Date, default: Date.now },
