@@ -15,6 +15,17 @@ s/w
         => Node.js web-application
     - datasource   => persist data
         => NoSQL  i.e MongoDB
----------------------------------------------       
+---------------------------------------------    
+
+ 
+ ODM ( Object Document Mapping )
+
+    how to do ?
+
+    using third-party frameworks
+
+        e.g mongoose
+
+---------------------------------------------        
 
 
