@@ -6,8 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var productsRouter=require('./routes/products');
 
-var Product = require('./model/Product');
 
 //----------------------------------------------
 const mongoose = require('mongoose');
@@ -29,45 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-
-//-------------------------------------------------------------
-
-app.get('/new-product-form', function (req, res, next) {
-  res.render('product-form');
-});
-app.post('/save-product', function (req, res, next) {
-  if (req.body.id) {
-    Product.findByIdAndUpdate(req.body.id, req.body, (err, product) => {
-      res.redirect("/view-all");
-    })
-  } else {
-    let product = new Product(req.body);
-    product.save((product) => {
-      res.redirect("/view-all");
-    })
-  }
-});
-app.get('/view-all', function (req, res, next) {
-  Product.find((err, result) => {
-    if (err) next(err);
-    res.render('product-list', { products: result })
-  });
-})
-app.get('/delete-product', function (req, res, next) {
-  let id = req.query.id;
-  Product.remove({ _id: id }, (err) => {
-    if (err) throw err;
-    res.redirect('/view-all');
-  })
-})
-app.get('/edit-product', function (req, res, next) {
-  let id = req.query.id;
-  Product.findById({ _id: id }, (err, product) => {
-    if (err) throw err;
-    res.render('product-form', { product });
-  })
-})
-//-------------------------------------------------------------
+app.use('/products', productsRouter)
 
 
 // catch 404 and forward to error handler
