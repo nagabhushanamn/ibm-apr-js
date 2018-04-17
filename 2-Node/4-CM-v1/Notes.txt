@@ -9,6 +9,8 @@ problems with traditional web-application:
   2. on every req , 
     ==>server should re-generate same layout(UI) again & again with new data, keeping client's state
   3. on every response , 
-     we r loading same assets ( css , images , icons , fonts , browser javascript ), increase n/w bandwidth
+    ==> we r loading same assets ( css , images , icons , fonts , browser javascript ), increase n/w bandwidth
 
+soln:
 
+  SPA(Single Page Application) at browser-side using javascript

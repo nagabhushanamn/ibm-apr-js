@@ -9,7 +9,6 @@ const app = express();
 
 app.use("/contacts", contacts);
 
-
 app.listen(3000, () => {
     console.log('listening at http://localhost:3000');
 });
