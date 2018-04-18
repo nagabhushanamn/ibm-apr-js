@@ -32,7 +32,7 @@ router.put("/:productId", express.json(), function (req, res, next) {
 })
 //------------------------------------------------------
 // DELETE : /products/{productId}
-router.put("/:productId", express.json(), function (req, res, next) {
+router.delete("/:productId", express.json(), function (req, res, next) {
     let productId = req.params.productId;
     Product.findByIdAndRemove(productId, function (err, result) {
         if (err) throw err;
