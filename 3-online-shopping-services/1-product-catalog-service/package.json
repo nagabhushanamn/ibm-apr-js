@@ -1,0 +1,16 @@
+{
+  "name": "product-catalog-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev-start": "nodemon index.js"
+  },
+  "author": "Nag",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.0.15"
+  }
+}

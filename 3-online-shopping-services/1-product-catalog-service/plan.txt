@@ -1,0 +1,41 @@
+
+
+Model
+------------------------------------
+    a. Product
+        - id    : number
+        - name  : string
+        - price : number
+        - image_path : string 
+        - description : string
+    b. Review
+        - id
+        - stars : number
+        - author: string
+        - body  : string
+        - productId : number
+------------------------------------     
+data-source:
+    => NoSQL i.e mongo_db
+    collection(s)
+        1. PRODUCTS
+        2. REVIEWS
+-------------------------------------
+application-service:
+
+product-catalog-api
+
+    - /products
+    - /products/{id}
+    - /products/{id}/reviews
+    - /products/{id}/reviews/{id}
+
+    resource representation(s) ==> application/xml or application/json
+
+--------------------------------------
+    Language  : javascript
+    Runtime   : Node.js
+    Framework : Express
+    Tool      : NPM / YARN
+--------------------------------------    
+
