@@ -1,0 +1,47 @@
+
+datasource
+--------------
+
+SQL
+	=> H2 | derby | HSQL   -> in-memory SQL databases
+	schema:  mts-db-schema.sql
+
+Model
+-----------
+   a. Account
+   		-num
+   		-holderName
+   		-balance
+   		-type
+   		-status
+   b. Txn
+   		-id
+   		-amount
+   		-txnDate
+   		-closingBalance		
+------------------------------------------------
+ Layer(s)
+   1.data/repository layer  ==> persistence logic
+   		- AccountRepository
+   2.business/service layer ==> processing logic
+   		- TxrService
+   3.web layer              ==> http request & response logic 
+------------------------------------------------   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    		
