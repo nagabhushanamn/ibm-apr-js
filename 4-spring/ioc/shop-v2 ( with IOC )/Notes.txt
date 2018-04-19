@@ -1,0 +1,8 @@
+
+
+
+components
+--------------
+
+	a. billing      : getTotalPrice(cart) : double
+	b. price-matrix : getPrice(item)      : double 
