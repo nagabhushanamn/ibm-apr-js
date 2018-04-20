@@ -13,19 +13,22 @@ class ActionButton extends Component {
     }
     handleBtnClick() {
         let { count } = this.state;
-        let { onAction } = this.props;
-        this.setState({ count: count + 1 });
-        onAction();
+        let { onAction, value } = this.props;
+        this.setState({ count: count + Number.parseInt(value, 10) }, () => {
+            let { count } = this.state;
+            onAction(count * count);
+        });
     }
     render() {
         console.log('ActionButton :: render()');
         let { value } = this.props;
         let { count } = this.state;
+        let className = value < 0 ? 'btn btn-danger' : 'btn btn-primary';
         return (
             <div className="action-btn">
                 <div className="card">
                     <div className="card-body">
-                        <button className="btn btn-primary"
+                        <button className={className}
                             onClick={() => { this.handleBtnClick() }}>
                             {value} : <span className="badge badge-light">{count}</span>
                         </button>
@@ -36,8 +39,8 @@ class ActionButton extends Component {
     }
 }
 ActionButton.propTypes = {
-    value: PropTypes.string.isRequired,
-    onAction:PropTypes.func
+    value: PropTypes.number.isRequired,
+    onAction: PropTypes.func
 };
 
 export default ActionButton;
