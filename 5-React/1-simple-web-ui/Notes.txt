@@ -1,0 +1,98 @@
+
+
+
+web tech
+--------------
+
+    HTML ==> content
+    CSS  ==> style
+    JavaScript ==> behavior
+
+
+
+what .js-lang can do with HTML-page in browser-envi?
+
+using browser provided web-APIs,
+JavaScript-lang can bring any dynamic content/activity to web-page
+
+browser-APIs :  ==> are based on 'w3c' recommendations ,
+they are implemented & abstracted as JavaScript objects & functions
+
+browser-APIs  :
+    ==> DOM, XHR/fetch,Timer
+
+ 
+using DOM
+------------
+ -> can create,retreive,update,delete HTML elements
+ -> can change element's inner text/html content 
+ -> can change element's attributes/properties
+ -> can change element's styles ( css )
+ -> can validate form-fields 
+ -> can create rich UI-components
+
+
+using XHR / Fetch
+-------------------
+ -> can communicate with server-side programs async ( AJAX )
+
+using Timer API
+---------------
+ -> can execute any action on timeout/time-interval
+
+
+HTML 5 APIs
+---------------
+
+    ref : https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
+
+
+
+----------------------------------------------------------
+
+
+problems when using plain-js(your-code) with browser-apis
+
+
+ ==> browser compatability
+ ==> memory-managament issues ( i.e cleaning un-used DOM elements)
+ ==> perforamance issues      (i.e DOM manipulation should be minimal)
+ ==> data-binding is manual
+ ==> code oraganization is difficult
+ ==> too much code for simple operations
+
+ -----------------------------------------------------------
+
+
+ soln :
+        ==> using third-party's JavaScript Lib & F.Ws
+
+
+    1. jQuery
+
+    MVC / MVVM based javascript lib & F.Ws
+
+    1. knockout
+    2. AngularJS
+    3. EmberJS
+    4. backboneJS & MarionetJS
+    5. DOJO
+    6. EXT JS from sencha
+    ............
+
+    ---------------------------------------------------
+
+    component / custom-element/tag based javascript F.Ws & lib
+    
+    ==> reactjs  from facebook   ( our course)
+    ==> Angular
+    ==> Aurelia
+    ==> Vue
+    .......
+
+  --------------------------------------------------------
+
+
+
+
+
