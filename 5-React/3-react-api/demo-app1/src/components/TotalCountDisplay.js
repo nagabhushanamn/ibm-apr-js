@@ -12,7 +12,7 @@ class TotalCountDisplay extends Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    Total : <span className="badge badge-light">{value}</span>
+                    Total count : <span className="badge badge-info">{value}</span>
                 </div>
             </div>
         );

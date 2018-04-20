@@ -26,13 +26,17 @@ class App extends Component {
           <a className="navbar-brand" href="/">{title}</a>
         </nav>
         <hr />
-        <ActionButton value="1" onAction={()=>{this.incrementTotalCount()}}/>
-        <ActionButton value="10" onAction={()=>{this.incrementTotalCount()}}/>
-        <ActionButton value="-10" onAction={()=>{this.incrementTotalCount()}}/>
-        <ActionButton value="-1" onAction={()=>{this.incrementTotalCount()}}/>
-        <hr />
-        <div style={{ clear: 'both' }}>
-          <TotalCountDisplay value={totalCount} />
+        <div className="card">
+          <div className="card-header">counter app - <span className="badge badge-danger">{totalCount}</span></div>
+          <div className="card-body">
+            <ActionButton value="1" onAction={() => { this.incrementTotalCount() }} />
+            <ActionButton value="10" onAction={() => { this.incrementTotalCount() }} />
+            <ActionButton value="-10" onAction={() => { this.incrementTotalCount() }} />
+            <ActionButton value="-1" onAction={() => { this.incrementTotalCount() }} />
+            <div style={{ clear: 'both' }}>
+              <TotalCountDisplay value={totalCount} />
+            </div>
+          </div>
         </div>
       </div >
     );
