@@ -5,7 +5,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: 1,
       products: [
         {
           id: 1,
@@ -24,15 +23,23 @@ class App extends Component {
       ]
     };
   }
-  
+
   renderProducts() {
     let { products, currentTab } = this.state;
+
     return products.map((item, idx) => {
       return (<Product key={idx} product={item} />);
     })
+    // or
+    // let arr = [];
+    // products.forEach((item, idx) => {
+    //   let p = <Product key={idx} product={item} />
+    //   arr.push(p)
+    // });
+    // return arr;
+
   }
   render() {
-
     return (
       <div className="container">
         <nav className="navbar navbar-light bg-light">

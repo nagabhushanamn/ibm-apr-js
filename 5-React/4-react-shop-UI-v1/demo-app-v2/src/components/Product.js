@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Review from './Review'
 
 class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentTab: 1
+            currentTab: 1,
+            reviews: [
+                { stars: 5, author: 'author@email.com', body: 'test review' }
+            ]
         }
     }
     changeTab(tabIndex) {
         this.setState({ currentTab: tabIndex });
+    }
+    renderReviews() {
+        let { reviews } = this.state;
+        return reviews.map((review, idx) => {
+            return <Review key={idx} review={review} />
+        });
     }
     renderTabCard(product) {
         let { currentTab } = this.state;
@@ -23,7 +33,11 @@ class Product extends Component {
                 card = (<div><p>Not Yet</p></div>)
                 break;
             case 3:
-                card = (<div><p>None yet</p></div>)
+                card = (
+                    <div>
+                        {this.renderReviews()}
+                    </div>
+                )
                 break;
             default:
                 card = null;
