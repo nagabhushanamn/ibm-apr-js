@@ -13,7 +13,7 @@ class ReviewForm extends Component {
     }
     toggleForm() {
         let { isOpen } = this.state;
-        this.setState({ isOpen: !isOpen });
+        this.setState({ isOpen: !isOpen, stars: 5, author: '', body: '' });
     }
     handleChange(e) {
         let field = e.target.id;
