@@ -62,7 +62,7 @@ class Greeting extends Component {
     }
     componentWillUnmount() {
         console.log('Greeting :: componentWillUnmount()');
-        //clearInterval(this.interval);
+        clearInterval(this.interval);
     }
 
 }

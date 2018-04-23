@@ -32,10 +32,9 @@ class App extends Component {
         <button onClick={() => this.changeMessage('good morning')}>Good Morning</button>
         <button onClick={() => this.changeMessage('good noon')}>Good Noon</button>
         <button onClick={() => this.changeMessage('good evening')}>Good Evening</button>
-        <hr />
         <button onClick={() => this.changeMessage('')}>Remove Greeting</button>
         <hr />
-        {/* {this.renderGreeting()} */}
+        {this.renderGreeting()}
         <hr />
         <Box>
           <Product />
