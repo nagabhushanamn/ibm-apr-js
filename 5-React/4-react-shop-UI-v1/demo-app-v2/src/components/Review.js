@@ -15,8 +15,8 @@ class Review extends Component {
             <div className="row">
                 <div className="col-6 col-sm-8 col-md-8">
                     <div className="alert alert-info">
-                        <span>{this.renderStars(review.stars)}</span> &mdash; {review.author}
-                        <hr />
+                        <span>{this.renderStars(review.stars)}</span> &mdash; <span>{review.author}</span>
+                        <hr class="my-4"/>
                         <p>{review.body}</p>
                     </div>
                 </div>

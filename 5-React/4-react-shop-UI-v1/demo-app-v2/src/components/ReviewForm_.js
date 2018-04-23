@@ -5,27 +5,19 @@ class ReviewForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false,
-            stars: 5,
-            author: '',
-            body: ''
+            isOpen: false
         };
     }
     toggleForm() {
         let { isOpen } = this.state;
         this.setState({ isOpen: !isOpen });
     }
-    handleChange(e) {
-        let field = e.target.id;
-        let value = e.target.value;
-        this.setState({ [field]: value })
-    }
     handleForm(e) {
         e.preventDefault();
         let newReview = {
-            stars: this.state.stars,
-            author: this.state.author,
-            body: this.state.body,
+            stars: this.refs.stars.value,
+            author: this.refs.author.value,
+            body: this.refs.body.value,
         };
         this.props.onNewReview(newReview);
         this.toggleForm();
@@ -42,32 +34,19 @@ class ReviewForm extends Component {
                         <form onSubmit={(e) => { this.handleForm(e) }}>
                             <div className="form-group">
                                 <label>stars</label>
-                                <select
-                                    className="form-control"
-                                    id="stars"
-                                    onChange={(e) => { this.handleChange(e) }}
-                                    value={this.state.stars}>
+                                <select className="form-control" ref="stars">
                                     {[1, 2, 3, 4, 5].map(n => <option key={n}>{n}</option>)}
                                 </select>
-                                <div className="help-block">
-                                    {this.state.stars < 5 ? 'give me 5 stars' : ''}
-                                </div>
                             </div>
                             <div className="form-group">
                                 <label>author</label>
-                                <input className="form-control"
-                                    id="author"
-                                    onChange={(e) => { this.handleChange(e) }}
-                                    value={this.state.author} />
+                                <input className="form-control" ref="author" />
                             </div>
                             <div className="form-group">
                                 <label>body</label>
-                                <textarea className="form-control"
-                                    id="body"
-                                    onChange={(e) => { this.handleChange(e) }}
-                                    value={this.state.body}></textarea>
+                                <textarea className="form-control" ref="body"></textarea>
                             </div>
-                            <button disabled={this.state.stars < 5} className="btn btn-primary">submit</button>
+                            <button className="btn btn-primary">submit</button>
                             <button type="button" onClick={() => this.toggleForm()} className="btn btn-danger">cancel</button>
                         </form>
                     </div>
