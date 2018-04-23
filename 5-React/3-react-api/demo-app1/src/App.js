@@ -37,11 +37,19 @@ class App extends Component {
               <ActionButton value={-1} onAction={(v) => { this.incrementTotalCount(v) }} /> 
               */
               }
-              {[1,-1,10,-10,100,-100].map((n)=><ActionButton value={n} onAction={(v) => { this.incrementTotalCount(v) }} />)}
-           
+            
+            {
+              [1,-1,10,-10,100,-100]
+              .map((n)=><ActionButton 
+                    value={n} 
+                    onAction={(v) => { this.incrementTotalCount(v) }} />
+              )
+
+            }
             <div style={{ clear: 'both' }}>
               <TotalCountDisplay value={totalCount} />
             </div>
+            
           </div>
         </div>
       </div >
