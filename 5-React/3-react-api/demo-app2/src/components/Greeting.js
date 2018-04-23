@@ -39,7 +39,7 @@ class Greeting extends Component {
         // }, 500);
 
         this.interval = setInterval(() => {
-            this.forceUpdate();
+            //this.forceUpdate();
         }, 500);
 
 
