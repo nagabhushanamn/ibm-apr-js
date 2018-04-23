@@ -17,6 +17,11 @@ class Product extends Component {
     changeTab(tabIndex) {
         this.setState({ currentTab: tabIndex });
     }
+    handleNewReview(review) {
+        let { reviews } = this.state;
+        reviews = reviews.concat(review);
+        this.setState({ reviews });
+    }
     renderReviews() {
         let { reviews } = this.state;
         return reviews.map((review, idx) => {
@@ -37,8 +42,8 @@ class Product extends Component {
                 card = (
                     <div>
                         {this.renderReviews()}
-                        <hr/>
-                        <ReviewForm />
+                        <hr />
+                        <ReviewForm onNewReview={(review) => { this.handleNewReview(review) }} />
                     </div>
                 )
                 break;
@@ -72,7 +77,7 @@ class Product extends Component {
                                 <li className="nav-item">
                                     <a className={classnames('nav-link', { active: currentTab === 3 })} href="#" onClick={() => { this.changeTab(3) }}>Reviews</a>
                                 </li>
-                            </ul>
+                            </ul><br />
                             {this.renderTabCard(product)}
                         </div>
                     </div>

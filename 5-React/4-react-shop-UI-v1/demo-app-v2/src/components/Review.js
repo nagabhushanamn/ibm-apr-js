@@ -5,7 +5,7 @@ class Review extends Component {
     renderStars(n) {
         let stars = [];
         for (let i = 0; i < n; i++) {
-            stars.push(<i className="fa fa-star"></i>);
+            stars.push(<i key={i} className="fa fa-star"></i>);
         }
         return stars;
     }
