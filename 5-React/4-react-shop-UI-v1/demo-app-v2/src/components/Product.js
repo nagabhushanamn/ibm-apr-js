@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Review from './Review'
+import ReviewForm from './ReviewForm';
 
 class Product extends Component {
     constructor(props) {
@@ -36,6 +37,8 @@ class Product extends Component {
                 card = (
                     <div>
                         {this.renderReviews()}
+                        <hr/>
+                        <ReviewForm />
                     </div>
                 )
                 break;
