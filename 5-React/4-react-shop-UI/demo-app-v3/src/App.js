@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Product from './components/Product';
 import ViewCart from './components/ViewCart';
+import Login from './components/Login';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class App extends Component {
@@ -8,22 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       cart: {},  //itemLine ==> { itemId : {item,qty}}
-      products: [
-        {
-          id: 111,
-          name: 'Laptop',
-          price: 198000,
-          description: 'New Mac pro',
-          image: 'images/Laptop.png'
-        },
-        {
-          id: 222,
-          name: 'Mobile',
-          price: 18000,
-          description: 'New  pro',
-          image: 'images/Mobile.png'
-        }
-      ]
+      products: []
     };
   }
   addToCart(item) {
@@ -37,7 +23,7 @@ class App extends Component {
     this.setState({ cart });
   }
 
-  renderProducts() {
+  renderProductItems() {
     let { products } = this.state;
     return products.map((item, idx) => {
       return (<Product key={idx}
@@ -45,7 +31,21 @@ class App extends Component {
         onBuy={(item) => { this.addToCart(item) }} />);
     })
   }
-
+  renderProducts() {
+    return (
+      <div className="list-group">
+        {this.renderProductItems()}
+      </div>
+    )
+  }
+  componentDidMount() {
+    let api = "http://localhost:8080/products";
+    let promise=fetch(api);
+    promise.then(response=>response.json())
+           .then(products=>{
+             this.setState({products});
+           });
+  }
   render() {
     return (
       <div className="container">
@@ -53,26 +53,27 @@ class App extends Component {
           <div>
             <nav className="navbar navbar-light bg-light">
               <Link className="navbar-brand" to="/">shopIT</Link>
+              <ul className="navbar-nav navbar-right">
+                <li className="nav-item">
+                  <Link className="nav-link" to="login">
+                    <i className="fa fa-sign-in"></i>Login
+                  </Link>
+                </li>
+              </ul>
             </nav>
             <hr />
             <i className="fa fa-shopping-cart"></i>
             <span>&nbsp;{Object.keys(this.state.cart).length} item(s) in cart </span>
             |
-            <Link to="/">View Products</Link>
-            <span className="pull-right">
-              <Link to="cart">View cart</Link>
-            </span>
+            <Link className="" to="/">View Products</Link>
+            <Link className="pull-right" to="cart">View cart</Link>
             <hr />
 
             <Route exact path="/"
-              render={() => (
-                <div className="list-group">
-                  {this.renderProducts()}
-                </div>
-              )
-              } />
+              render={() => this.renderProducts()} />
             <Route path="/cart"
               render={() => <ViewCart cart={this.state.cart} />} />
+            <Route path="/login" component={Login} />
 
           </div>
         </Router>

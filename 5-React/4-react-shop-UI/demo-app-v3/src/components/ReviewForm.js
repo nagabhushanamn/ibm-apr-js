@@ -79,7 +79,7 @@ class ReviewForm extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-6 col-sm-8 col-md-8">
+                    <div className="col-6 col-sm-6 col-md-6">
                         {this.renderForm()}
                     </div>
                 </div>
