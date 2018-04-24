@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Product from './components/Product';
+import ViewCart from './components/ViewCart';
 
 class App extends Component {
   constructor(props) {
@@ -33,9 +34,9 @@ class App extends Component {
     let { products } = this.state;
 
     return products.map((item, idx) => {
-      return (<Product key={idx} 
-                       product={item} 
-                       onBuy={(item) => { this.addToCart(item) }} />);
+      return (<Product key={idx}
+        product={item}
+        onBuy={(item) => { this.addToCart(item) }} />);
     })
 
     // or
@@ -56,8 +57,10 @@ class App extends Component {
         </nav>
         <hr />
         <i className="fa fa-shopping-cart"></i>
-        &nbsp;{this.state.cart.length} item(s) in cart
+        &nbsp;{this.state.cart.length} item(s) in cart |
+        <span className="pull-right"><a href="/#">View cart</a></span>
         <hr />
+        <ViewCart items={this.state.cart} />
         <div className="list-group">
           {this.renderProducts()}
         </div>

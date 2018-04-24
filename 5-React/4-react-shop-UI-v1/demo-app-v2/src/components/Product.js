@@ -69,7 +69,8 @@ class Product extends Component {
                         <div className="col-8 col-sm-9 col-md-9">
                             <h4>{product.name}</h4>
                             <h5>&#8377;{product.price}</h5>
-                            <button onClick={() => { this.handleBuyBtnClick() }} className="btn btn-primary">buy</button>
+                            <button 
+                                onClick={() => { this.handleBuyBtnClick() }} className="btn btn-primary">buy</button>
                             <hr />
                             <ul className="nav nav-tabs">
                                 <li className="nav-item">
@@ -91,6 +92,7 @@ class Product extends Component {
     }
 }
 Product.propTypes = {
-    product: PropTypes.object.isRequired
+    product: PropTypes.object.isRequired,
+    onBuy:PropTypes.func
 }
 export default Product;
