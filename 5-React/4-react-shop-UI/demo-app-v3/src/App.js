@@ -40,11 +40,12 @@ class App extends Component {
   }
   componentDidMount() {
     let api = "http://localhost:8080/products";
-    let promise=fetch(api);
-    promise.then(response=>response.json())
-           .then(products=>{
-             this.setState({products});
-           });
+    let promise = fetch(api);
+    promise
+      .then(response => response.json())
+      .then(products => {
+        this.setState({ products });
+      });
   }
   render() {
     return (

@@ -9,18 +9,35 @@ class Product extends Component {
         super(props);
         this.state = {
             currentTab: 1,
-            reviews: [
-                { stars: 5, author: 'author@email.com', body: 'test review' }
-            ]
+            reviews: []
         }
     }
     changeTab(tabIndex) {
-        this.setState({ currentTab: tabIndex });
+        let { product } = this.props;
+        this.setState({ currentTab: tabIndex }, () => {
+            if (tabIndex === 3) {
+                let api = `http://localhost:8080/products/${product._id}/reviews`;
+                fetch(api)
+                    .then(response => response.json())
+                    .then(reviews => this.setState({ reviews }));
+            }
+        });
     }
     handleNewReview(review) {
-        let { reviews } = this.state;
-        reviews = reviews.concat(review);
-        this.setState({ reviews });
+        let { product } = this.props;
+        let api = `http://localhost:8080/products/${product._id}/reviews`;
+        fetch(api, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(review)
+        })
+            .then(response => response.json())
+            .then(r => {
+                let { reviews } = this.state;
+                reviews = reviews.concat(r);
+                this.setState({ reviews });
+            });
+
     }
     renderReviews() {
         let { reviews } = this.state;
@@ -69,7 +86,7 @@ class Product extends Component {
                         <div className="col-8 col-sm-9 col-md-9">
                             <h4>{product.name}</h4>
                             <h5>&#8377;{product.price}</h5>
-                            <button 
+                            <button
                                 onClick={() => { this.handleBuyBtnClick() }} className="btn btn-primary">buy</button>
                             <hr />
                             <ul className="nav nav-tabs">
@@ -93,6 +110,6 @@ class Product extends Component {
 }
 Product.propTypes = {
     product: PropTypes.object.isRequired,
-    onBuy:PropTypes.func
+    onBuy: PropTypes.func
 }
 export default Product;
