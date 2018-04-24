@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Product from './components/Product';
 import ViewCart from './components/ViewCart';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCartOpen: false,
       cart: {},  //itemLine ==> { itemId : {item,qty}}
       products: [
         {
@@ -25,10 +25,6 @@ class App extends Component {
         }
       ]
     };
-  }
-  toggleCart() {
-    let { isCartOpen } = this.state;
-    this.setState({ isCartOpen: !isCartOpen });
   }
   addToCart(item) {
     let { cart } = this.state;
@@ -50,31 +46,36 @@ class App extends Component {
     })
   }
 
-  renderProductsOrCart() {
-    let { isCartOpen } = this.state;
-    if (isCartOpen) return <ViewCart cart={this.state.cart} />
-    else return (
-      <div className="list-group">
-        {this.renderProducts()}
-      </div>
-    );
-  }
-
   render() {
-    let { isCartOpen } = this.state;
     return (
       <div className="container">
-        <nav className="navbar navbar-light bg-light">
-          <a className="navbar-brand" href="/">shopIT</a>
-        </nav>
-        <hr />
-        <i className="fa fa-shopping-cart"></i>
-        &nbsp;{Object.keys(this.state.cart).length} item(s) in cart |
-        <span className="pull-right">
-          <a href="/#" onClick={() => { this.toggleCart() }}>{!isCartOpen ? 'View cart' : 'Show products'}</a>
-        </span>
-        <hr />
-        {this.renderProductsOrCart()}
+        <Router>
+          <div>
+            <nav className="navbar navbar-light bg-light">
+              <Link className="navbar-brand" to="/">shopIT</Link>
+            </nav>
+            <hr />
+            <i className="fa fa-shopping-cart"></i>
+            <span>&nbsp;{Object.keys(this.state.cart).length} item(s) in cart </span>
+            |
+            <Link to="/">View Products</Link>
+            <span className="pull-right">
+              <Link to="cart">View cart</Link>
+            </span>
+            <hr />
+
+            <Route exact path="/"
+              render={() => (
+                <div className="list-group">
+                  {this.renderProducts()}
+                </div>
+              )
+              } />
+            <Route path="/cart"
+              render={() => <ViewCart cart={this.state.cart} />} />
+
+          </div>
+        </Router>
       </div>
     );
   }

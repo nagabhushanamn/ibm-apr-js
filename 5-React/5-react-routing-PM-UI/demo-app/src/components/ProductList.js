@@ -43,7 +43,7 @@ class ProductList extends Component {
                 </div>
                 <hr />
                 <Route path={this.props.match.url + "/:code"}
-                       render={(props) => <ProductDetail {...props} products={products} />} />
+                       render={(props) => <ProductDetail {...props} />} />
             </div>
         );
     }

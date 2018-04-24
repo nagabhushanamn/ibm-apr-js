@@ -2,18 +2,12 @@ import React, { Component } from 'react';
 
 class ProductDetail extends Component {
     render() {
-        let { products } = this.props;
         let code = this.props.match.params.code;
-        let product = {};
-        products.forEach((item) => {
-            if (item.code === Number.parseInt(code)) {
-                product = item;
-            }
-        });
+        let product={}; // 
         return (
-            <div>
+            <div className="col-6 col-sm-8 col-md-8">
                 <div className="card">
-                    <div className="card-header">Product Details - {this.props.match.params.code}</div>
+                    <div className="card-header">Product Details - {code}</div>
                     <div className="card-body">
                         <div className="row">
                             <div className="col-4 col-sm-3 col-md-3">

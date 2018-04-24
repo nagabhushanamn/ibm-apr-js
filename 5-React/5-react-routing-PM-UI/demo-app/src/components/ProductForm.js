@@ -29,7 +29,7 @@ class ProductForm extends Component {
     render() {
         return (
             <div>
-                <div className="col-8 col-sm-8 col-md-8">
+                <div className="col-6 col-sm-6 col-md-6">
                     <div className="card">
                         <div className="card-header">Product From</div>
                         <div className="card-body">

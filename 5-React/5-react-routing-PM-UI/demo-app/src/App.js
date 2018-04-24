@@ -31,7 +31,7 @@ class App extends Component {
   handleFormSubmit(product) {
     let { products } = this.state;
     this.setState({ products: products.concat(product) }, () => {
-      this.props.history.push('/all')
+      this.props.history.push('/products')
     });
   }
 
