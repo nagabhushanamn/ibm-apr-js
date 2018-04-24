@@ -7,17 +7,17 @@ class App extends Component {
     super(props);
     this.state = {
       isCartOpen: false,
-      cart: [],
+      cart: {},  //itemLine ==> { itemId : {item,qty}}
       products: [
         {
-          id: 1,
+          id: 111,
           name: 'Laptop',
           price: 198000,
           description: 'New Mac pro',
           image: 'images/Laptop.png'
         },
         {
-          id: 2,
+          id: 222,
           name: 'Mobile',
           price: 18000,
           description: 'New  pro',
@@ -31,33 +31,33 @@ class App extends Component {
     this.setState({ isCartOpen: !isCartOpen });
   }
   addToCart(item) {
-    this.setState({ cart: this.state.cart.concat(item) });
+    let { cart } = this.state;
+    if (cart[item.id]) {
+      let itemLine = cart[item.id];
+      cart[item.id] = Object.assign({}, itemLine, { qty: itemLine.qty + 1 })
+    } else {
+      cart[item.id] = { item, qty: 1 }
+    }
+    this.setState({ cart });
   }
 
   renderProducts() {
     let { products } = this.state;
-
     return products.map((item, idx) => {
       return (<Product key={idx}
         product={item}
         onBuy={(item) => { this.addToCart(item) }} />);
     })
-
-    // or
-
-    // let arr = [];
-    // products.forEach((item, idx) => {
-    //   let p = <Product key={idx} product={item} />
-    //   arr.push(p)
-    // });
-    // return arr;
-
   }
 
-  renderCart() {
+  renderProductsOrCart() {
     let { isCartOpen } = this.state;
-    if (isCartOpen) return <ViewCart items={this.state.cart} />
-    else return null;
+    if (isCartOpen) return <ViewCart cart={this.state.cart} />
+    else return (
+      <div className="list-group">
+        {this.renderProducts()}
+      </div>
+    );
   }
 
   render() {
@@ -69,15 +69,12 @@ class App extends Component {
         </nav>
         <hr />
         <i className="fa fa-shopping-cart"></i>
-        &nbsp;{this.state.cart.length} item(s) in cart |
+        &nbsp;{Object.keys(this.state.cart).length} item(s) in cart |
         <span className="pull-right">
-          <a href="/#" onClick={() => { this.toggleCart() }}>{!isCartOpen ? 'View cart' : 'Hide cart'}</a>
+          <a href="/#" onClick={() => { this.toggleCart() }}>{!isCartOpen ? 'View cart' : 'Show products'}</a>
         </span>
         <hr />
-        {this.renderCart()}
-        <div className="list-group">
-          {this.renderProducts()}
-        </div>
+        {this.renderProductsOrCart()}
       </div>
     );
   }
