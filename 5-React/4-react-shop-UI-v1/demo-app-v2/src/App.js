@@ -6,6 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isCartOpen: false,
       cart: [],
       products: [
         {
@@ -25,7 +26,10 @@ class App extends Component {
       ]
     };
   }
-
+  toggleCart() {
+    let { isCartOpen } = this.state;
+    this.setState({ isCartOpen: !isCartOpen });
+  }
   addToCart(item) {
     this.setState({ cart: this.state.cart.concat(item) });
   }
@@ -49,7 +53,15 @@ class App extends Component {
     // return arr;
 
   }
+
+  renderCart() {
+    let { isCartOpen } = this.state;
+    if (isCartOpen) return <ViewCart items={this.state.cart} />
+    else return null;
+  }
+
   render() {
+    let { isCartOpen } = this.state;
     return (
       <div className="container">
         <nav className="navbar navbar-light bg-light">
@@ -58,9 +70,11 @@ class App extends Component {
         <hr />
         <i className="fa fa-shopping-cart"></i>
         &nbsp;{this.state.cart.length} item(s) in cart |
-        <span className="pull-right"><a href="/#">View cart</a></span>
+        <span className="pull-right">
+          <a href="/#" onClick={() => { this.toggleCart() }}>{!isCartOpen ? 'View cart' : 'Hide cart'}</a>
+        </span>
         <hr />
-        <ViewCart items={this.state.cart} />
+        {this.renderCart()}
         <div className="list-group">
           {this.renderProducts()}
         </div>

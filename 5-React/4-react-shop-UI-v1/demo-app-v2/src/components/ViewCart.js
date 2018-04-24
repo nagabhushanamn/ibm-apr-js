@@ -8,7 +8,7 @@ class ViewCart extends Component {
                 <tr>
                     <td>{item.id}</td>
                     <td>{item.name}</td>
-                    <td>{item.price}</td>
+                    <td>&#8377;{item.price}</td>
                 </tr>
             );
         });
