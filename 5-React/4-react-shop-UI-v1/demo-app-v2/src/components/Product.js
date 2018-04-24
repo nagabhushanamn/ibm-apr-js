@@ -52,6 +52,10 @@ class Product extends Component {
         }
         return card;
     }
+    handleBuyBtnClick() {
+        let { product, onBuy } = this.props;
+        onBuy(product);
+    }
     render() {
         let { product } = this.props;
         let { currentTab } = this.state;
@@ -65,17 +69,17 @@ class Product extends Component {
                         <div className="col-8 col-sm-9 col-md-9">
                             <h4>{product.name}</h4>
                             <h5>&#8377;{product.price}</h5>
-                            <button className="btn btn-primary">buy</button>
+                            <button onClick={() => { this.handleBuyBtnClick() }} className="btn btn-primary">buy</button>
                             <hr />
                             <ul className="nav nav-tabs">
                                 <li className="nav-item">
-                                    <a className={classnames('nav-link', { active: currentTab === 1 })} href="#" onClick={() => { this.changeTab(1) }}>Description</a>
+                                    <a className={classnames('nav-link', { active: currentTab === 1 })} href="/#" onClick={() => { this.changeTab(1) }}>Description</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className={classnames('nav-link', { active: currentTab === 2 })} href="#" onClick={() => { this.changeTab(2) }}>Specification</a>
+                                    <a className={classnames('nav-link', { active: currentTab === 2 })} href="/#" onClick={() => { this.changeTab(2) }}>Specification</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className={classnames('nav-link', { active: currentTab === 3 })} href="#" onClick={() => { this.changeTab(3) }}>Reviews</a>
+                                    <a className={classnames('nav-link', { active: currentTab === 3 })} href="/#" onClick={() => { this.changeTab(3) }}>Reviews</a>
                                 </li>
                             </ul><br />
                             {this.renderTabCard(product)}

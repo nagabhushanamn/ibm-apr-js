@@ -13,10 +13,10 @@ class Review extends Component {
         let { review } = this.props;
         return (
             <div className="row">
-                <div className="col-6 col-sm-8 col-md-8">
+                <div className="col-8 col-sm-10 col-md-10">
                     <div className="alert alert-info">
                         <span>{this.renderStars(review.stars)}</span> &mdash; <span>{review.author}</span>
-                        <hr class="my-4"/>
+                        <hr className="my-4"/>
                         <p>{review.body}</p>
                     </div>
                 </div>

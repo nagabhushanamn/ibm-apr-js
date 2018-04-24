@@ -5,6 +5,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cart: [],
       products: [
         {
           id: 1,
@@ -24,13 +25,21 @@ class App extends Component {
     };
   }
 
+  addToCart(item) {
+    this.setState({ cart: this.state.cart.concat(item) });
+  }
+
   renderProducts() {
-    let { products, currentTab } = this.state;
+    let { products } = this.state;
 
     return products.map((item, idx) => {
-      return (<Product key={idx} product={item} />);
+      return (<Product key={idx} 
+                       product={item} 
+                       onBuy={(item) => { this.addToCart(item) }} />);
     })
+
     // or
+
     // let arr = [];
     // products.forEach((item, idx) => {
     //   let p = <Product key={idx} product={item} />
@@ -45,6 +54,9 @@ class App extends Component {
         <nav className="navbar navbar-light bg-light">
           <a className="navbar-brand" href="/">shopIT</a>
         </nav>
+        <hr />
+        <i className="fa fa-shopping-cart"></i>
+        &nbsp;{this.state.cart.length} item(s) in cart
         <hr />
         <div className="list-group">
           {this.renderProducts()}
