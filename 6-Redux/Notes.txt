@@ -1,0 +1,44 @@
+
+
+to use webpack tool
+--------------------
+
+
+npm install webpack --save-dev 
+npm install webpack-cli -g
+npm install webpack-dev-server -g
+npm install html-webpack-plugin --save-dev
+
+create 'webpack.config.js' file
+
+
+    const path = require('path');
+    const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+    module.exports = {
+        mode: 'development',
+        entry: './src/index.js',
+        output: {
+            filename: 'bundle.js',
+            path: path.resolve(__dirname, 'dist')
+        },
+        plugins: [new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })],
+        devServer: {
+            contentBase: path.join(__dirname, "dist"),
+            compress: true,
+            port: 9000
+        }
+    };
+
+
+    > webpack-dev-server
+
+    // or
+
+    update package.json , with start script
+
+        "start":"webpack-dev-server"
+
+    > npm start    
