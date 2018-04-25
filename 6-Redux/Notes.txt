@@ -1,12 +1,11 @@
 
 
-to use webpack tool
+to use webpack-tool
 --------------------
 
-
-npm install webpack --save-dev 
 npm install webpack-cli -g
 npm install webpack-dev-server -g
+npm install webpack --save-dev 
 npm install html-webpack-plugin --save-dev
 
 create 'webpack.config.js' file
