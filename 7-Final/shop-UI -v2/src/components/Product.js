@@ -4,43 +4,33 @@ import classnames from 'classnames';
 import Review from './Review'
 import ReviewForm from './ReviewForm';
 
+import { loadReviews, addNewReview } from '../actions/reviews';
+import { buy } from '../actions/cart';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentTab: 1,
-            reviews: []
         }
     }
     changeTab(tabIndex) {
-        let { product } = this.props;
+        let { product, actions } = this.props;
         this.setState({ currentTab: tabIndex }, () => {
             if (tabIndex === 3) {
-                let api = `http://localhost:8080/products/${product._id}/reviews`;
-                fetch(api)
-                    .then(response => response.json())
-                    .then(reviews => this.setState({ reviews }));
+                actions.loadReviews(product.code);
             }
         });
     }
     handleNewReview(review) {
-        let { product } = this.props;
-        let api = `http://localhost:8080/products/${product._id}/reviews`;
-        fetch(api, {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(review)
-        })
-            .then(response => response.json())
-            .then(r => {
-                let { reviews } = this.state;
-                reviews = reviews.concat(r);
-                this.setState({ reviews });
-            });
-
+        let { product, actions } = this.props;
+        actions.addNewReview(product.code, review);
     }
     renderReviews() {
-        let { reviews } = this.state;
+        let { reviews } = this.props;
         return reviews.map((review, idx) => {
             return <Review key={idx} review={review} />
         });
@@ -70,8 +60,8 @@ class Product extends Component {
         return card;
     }
     handleBuyBtnClick() {
-        let { product, onBuy } = this.props;
-        onBuy(product);
+        let { product, actions } = this.props;
+        actions.buy(product, 1);
     }
     render() {
         let { product } = this.props;
@@ -110,6 +100,20 @@ class Product extends Component {
 }
 Product.propTypes = {
     product: PropTypes.object.isRequired,
-    onBuy: PropTypes.func
 }
-export default Product;
+
+function mapStateToProps(state, props) {
+    let { product } = props;
+    let reviews = state.reviews[product.code]
+    return {
+        reviews: reviews || []
+    }
+}
+function mapDispatchToProps(dispatch) {
+    let actions = { loadReviews, addNewReview, buy };
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

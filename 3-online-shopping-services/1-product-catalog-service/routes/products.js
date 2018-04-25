@@ -4,13 +4,34 @@ const router = express.Router();
 const Product = require('../model/Product');
 const Review = require('../model/Review');
 
+//-------------------------------------------
+let products = [
+    {
+        code: "111",
+        name: 'Laptop',
+        price: 198000,
+        description: 'New Mac pro',
+        image: 'images/Laptop.png'
+    },
+    {
+        code: "222",
+        name: 'Mobile',
+        price: 18000,
+        description: 'New  pro',
+        image: 'images/Mobile.png'
+    }
+]
+
 //------------------------------------------------------
 // GET : /products
 router.get("/", function (req, res, next) {
-    Product.find((err, result) => {
-        if (err) throw err;
-        res.status(200).json(result);
-    });
+    // Product.find((err, result) => {
+    //     if (err) throw err;
+    //     res.status(200).json(result);
+    // });
+    setTimeout(()=>{
+        res.status(200).json(products);
+    },5000);
 })
 //------------------------------------------------------
 // GET : /products/{productId}

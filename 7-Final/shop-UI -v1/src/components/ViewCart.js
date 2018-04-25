@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import store from '../store';
+import { buy } from '../actions/cart';
+
 class ViewCart extends Component {
+
+    handleChange(e, item) {
+        let qty = e.target.value;
+        store.dispatch(buy(item, Number.parseInt(qty)));
+    }
     renderCartItems() {
         let { cart } = this.props;
         let keys = Object.keys(cart);
@@ -13,10 +21,12 @@ class ViewCart extends Component {
             return (
                 <tr key={idx}>
                     <td>{idx + 1}</td>
-                    <td>{item.id}</td>
+                    <td>{item.code}</td>
                     <td>{item.name}</td>
                     <td>&#8377;{item.price}</td>
-                    <td>{qty}</td>
+                    <td><input 
+                          onChange={(e) => { this.handleChange(e, item) }} size="2" type="number" 
+                          value={qty} /></td>
                     <td>&#8377;{item.price * qty}</td>
                 </tr>
             );
@@ -34,11 +44,9 @@ class ViewCart extends Component {
         }
         else {
             return (
-                <div className="col-10 col-sm-8 col-md-8">
+                <div className="col-10 col-sm-12 col-md-12">
                     <div className="card">
-                        <div className="card-header">
-                            items in cart
-                </div>
+                        <div className="card-header">items in cart</div>
                         <div className="card-body">
                             <table className="table table-bordered table-sm">
                                 <thead>
