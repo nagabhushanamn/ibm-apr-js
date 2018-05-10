@@ -25,13 +25,13 @@ let products = [
 //------------------------------------------------------
 // GET : /products
 router.get("/", function (req, res, next) {
-    // Product.find((err, result) => {
-    //     if (err) throw err;
-    //     res.status(200).json(result);
-    // });
-    setTimeout(()=>{
-        res.status(200).json(products);
-    },5000);
+    Product.find((err, result) => {
+        if (err) throw err;
+        res.status(200).json(result);
+    });
+    // setTimeout(()=>{
+    //     res.status(200).json(products);
+    // },5000);
 })
 //------------------------------------------------------
 // GET : /products/{productId}
@@ -65,6 +65,7 @@ router.delete("/:productId", express.json(), function (req, res, next) {
 router.post("/:productId/reviews", express.json(), function (req, res, next) {
     let productId = req.params.productId;
     const review = new Review(req.body);
+    
     review.product = productId;
     review.save((err, result) => {
         if (err) throw err;
